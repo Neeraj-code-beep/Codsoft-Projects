@@ -1,4 +1,6 @@
 # 🍹 Juice Landing Page
+
+**Live Demo:** [View on Netlify](https://neeraj-landing-page-demo.netlify.app/)
 ---
 
 ## Description
