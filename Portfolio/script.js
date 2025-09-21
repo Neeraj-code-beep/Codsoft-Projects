@@ -10,5 +10,14 @@ const themeButtons = document.querySelectorAll('.theme');
 themeButtons.forEach((btn) => {
   btn.addEventListener('click', () => {
     document.body.classList.toggle('dark-mode');
+
+    const themeText = document.querySelector('.theme-text');
+
+    // Toggle emoji between 🌙 and 🔆
+    if (themeText.textContent === '🌙') {
+      themeText.textContent = '🔆';
+    } else {
+      themeText.textContent = '🌙';
+    }
   });
 });
