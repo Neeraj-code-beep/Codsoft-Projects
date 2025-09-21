@@ -1,4 +1,6 @@
 # ✅ To-Do Manager
+
+**Live Demo:** [View on Netlify](https://to-do-manager-demo.netlify.app/)
 ---
 
 ## Description
