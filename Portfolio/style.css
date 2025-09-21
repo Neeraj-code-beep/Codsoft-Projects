@@ -24,6 +24,10 @@ button.theme {
   box-shadow: -3px -3px 7px #ccc, 2px 2px 5px #fdf6ec;
 }
 
+.theme p {
+  font-size: 20px;
+}
+
 body.dark-mode {
   background: linear-gradient(to left top, #1e1e2f, #1e1e2f);
   color: #a259ff;
