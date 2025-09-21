@@ -1,4 +1,6 @@
 # 🧮 Calculator
+
+**Live Demo:** [View on Netlify](https://neeraj-calculator-demo.netlify.app/)
 ---
 
 ## Description
