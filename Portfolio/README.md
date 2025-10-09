@@ -1,6 +1,6 @@
 # 💼 Portfolio
 
-**Live Demo:** [View on Netlify](https://neeraj-portfolio-demo.netlify.app/)
+**Live Demo:** [View on Netlify](https://portfolioneeraj123.netlify.app/)
 ---
 
 ## Description
