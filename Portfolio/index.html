@@ -1,317 +1,147 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Personal Portfolio</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#fdf6ec" />
+    <meta name="description" content="Neeraj Mishra's portfolio: web development skills, selected projects, and contact information." />
+    <title>Neeraj Mishra | Web Developer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="stylesheet" href="style.css" />
+    <script src="script.js" defer></script>
   </head>
   <body>
-    <!-- Navbar Section -->
-    <nav id="desktop-nav">
-    <div class="logo">Neeraj Mishra</div>
-    <button class="theme"><p class="theme-text">🌙</p></button>
-    <div>
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <header>
+      <nav class="desktop-nav" aria-label="Main navigation">
+        <a class="logo" href="#top">Neeraj Mishra</a>
         <ul class="nav-links">
-            <li><a href="#about">About</a></li>
-            <li><a href="#experience">Experience</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#blogs">Blogs</a></li>
-            <li><a href="#contact">Contact</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#experience">Skills</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#contact">Contact</a></li>
         </ul>
-    </div>
-</nav>
-<nav id="hamburger-nav">
-    <div class="logo">Neeraj Mishra</div>
-    <button class="theme">Theme</button>
-    <div class="hamburger-menu">
-        <div class="hamburger-icon" onclick="toggleMenu()">
-            <span></span>
-            <span></span>
-            <span></span>
+        <button class="theme" type="button" aria-label="Dark theme" aria-pressed="false"><span class="theme-text" aria-hidden="true">🌙</span></button>
+      </nav>
+      <nav class="mobile-nav" aria-label="Main navigation">
+        <a class="logo" href="#top">Neeraj Mishra</a>
+        <div class="mobile-actions">
+          <button class="theme" type="button" aria-label="Dark theme" aria-pressed="false"><span class="theme-text" aria-hidden="true">🌙</span></button>
+          <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open navigation menu">
+            <span></span><span></span><span></span>
+          </button>
         </div>
-        <div class="menu-links">
-            <li><a href="#about">About</a></li>
-            <li><a href="#experience">Experience</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#blogs">Blogs</a></li>
-            <li><a href="#contact">Contact</a></li>
+        <ul class="menu-links" id="mobile-menu" hidden>
+          <li><a href="#about">About</a></li>
+          <li><a href="#experience">Skills</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main id="main-content">
+      <section class="profile" id="top" aria-labelledby="profile-title">
+        <div class="profile-image-wrap">
+          <picture>
+            <source srcset="./assets/profilephoto.webp" type="image/webp" />
+            <img class="profile-image" src="./assets/profilephoto.png" alt="Neeraj Mishra" width="400" height="400" fetchpriority="high" />
+          </picture>
         </div>
-    </div>
-</nav>
-<section id="profile">
-    <div class="section__pic-container">
-        <img decoding="async" id="profile1" src="./assets/profilephoto.png" alt="Neeraj Mishra's profile picture" title="Neeraj Mishra" />
-    </div>
-    <div class="section__text">
-        <p class="section__text__p1">Hello, I'm</p>
-        <h1 class="title">Neeraj Mishra</h1>
-        <p class="section__text__p2">Web Developer</p>
-        <div class="btn-container">
-            <a href="" target="_blank" rel="nofollow noopener">
-                <button class="btn btn-color-1">
-                    See Resume
-
-                </button>
-            </a>
-            <a href="tel:+917534024819" target="_blank">
-                <button class="btn btn-color-2">
-                Contact Info
-                </button>
-            </a>           
-        </div>
-        <div id="socials-container">
-            <a target="_blank" href="https://www.linkedin.com/" rel="nofollow noopener">
-                <img decoding="async" src="./assets/linkedin.png" alt="My LinkedIn profile" class="icon" />
-            </a>
-
-            <a target="_blank" href="https://github.com/" rel="nofollow noopener">
-                <img decoding="async" src="./assets/github.png" alt="My Github profile" class="icon" />
-            </a>
-        </div>
-    </div>
-</section>
-<!-- About Section -->
-<section id="about">
-    <p class="section__text__p1">Get To Know More</p>
-    <h1 class="title" id="aboutTitle">About Me</h1>
-    <div class="section-container">
-
-        <div class="about-details-container">
-            <div class="about-containers">
-                <div class="details-container">
-                    <img decoding="async" src="./assets/experience.png" alt="Experience icon" class="icon" />
-                    <h3>Educational Experience</h3>
-                    <p>1+ years <br />Frontend/Backend Development</p>
-                </div>
-                <div class="details-container">
-                    <img decoding="async" src="./assets/education.png" alt="Education icon" class="icon" />
-                    <h3>Education</h3>
-                    <p>Bachelor of Computer Science Engineering<br /></p>
-                </div>
-            </div>
-            <div class="text-container">
-                <p><span class="highlight"></span>                  
-                   <p>
-                    I'm <span class="highlight">Web Developer</span> from India. I build apps with
-                    a focus on <span class="highlight">JavaScript CSS &amp; Tailwind CSS</span> considering
-                    all the aspects of <span class="highlight">UI/UX</span>. I enjoy turning complex problems into
-                    simple, beautiful and intuitive designs.
-                    </p>
-
-                    <p>
-                    A <span class="highlight">Software Engineer</span> who loves to solve problems.
-                    I have experience building high-performing, responsive, beautiful web applications to
-                    deliver a unique, intuitive user experience that works. I also have a
-                    <span class="highlight">keen interest in UI/UX</span> with some nice designing skills.
-                    </p>
-
-                    <p>
-                    I am a well-trained teammate who loves to share ideas and prioritizes communication
-                    in order to achieve goals within the set deadlines. I enjoy being challenged and
-                    working on projects that require me to step outside of my comfort zone.
-                  </p>
-                </p>
-            </div>
-        </div>
-    </div>
-    <img decoding="async" src="./assets/arrow.png" alt="Arrow icon" class="icon arrow" />
-</section>
-<section id="experience">
-    <p class="section__text__p1">Explore My</p>
-    <h1 class="title">Experience</h1>
-    <div class="experience-details-container">
-        <div class="about-containers">
-            <div class="details-container">
-                <h2 class="experience-sub-title">Frontend Development</h2>
-                <div class="article-container">
-                    <article>
-                        <img decoding="async" src="./assets/html.png" alt="Experience icon" class="icon" />
-                        <div>
-                            <h3>HTML5</h3>
-                            <p>Experienced</p>
-                        </div>
-                    </article>
-                    <article>
-                        <img decoding="async" src="./assets/css.png" alt="Experience icon" class="icon" />
-                        <div>
-                            <h3>CSS3</h3>
-                            <p>Experienced</p>
-                        </div>
-                    </article>
-                    <article>
-                        <img decoding="async" src="./assets/javscript.png" alt="Experience icon" class="icon" />
-                        <div>
-                            <h3>JavaScript</h3>
-                            <p>Experienced</p>
-                        </div>
-                    </article>
-                    <article>
-                        <img decoding="async" src="./assets/react.png" alt="Experience icon" class="icon" />
-                        <div>
-                            <h3>React</h3>
-                            <p>Intermediate</p>
-                        </div>
-                    </article>
-                    <article>
-                        <img decoding="async" src="./assets/redux.png" alt="Experience icon" class="icon" />
-                        <div>
-                            <h3>Redux</h3>
-                            <p>Intermediate</p>
-                        </div>
-                    </article>
-                    <article>
-          <img decoding="async" src="./assets/java.png" alt="Experience icon" class="icon" />
-          <div>
-            <h3>Java</h3>
-            <i>Basic</i>
-            <p>Intermediate</p>
+        <div class="profile-copy">
+          <p class="eyebrow">Hello, I'm</p>
+          <h1 class="title" id="profile-title">Neeraj Mishra</h1>
+          <p class="role">Web Developer</p>
+          <div class="button-row">
+            <a class="button button-outline" href="#projects">View projects</a>
+            <a class="button button-solid" href="#contact">Contact me</a>
           </div>
-        </article> 
-                    <article>
-                        <img decoding="async" src="./assets/tailwind.png" alt="Experience icon" class="icon" />
-                        <div>
-                            <h3>Tailwind </h3>
-                            <p>Intermediate</p>
-                        </div>
-                    </article>
-                    <article>
-                        <img decoding="async" src="./assets/bootstrap.png" alt="Experience icon" class="icon" />
-                        <div>
-                            <h3>Bootstrap </h3>
-                            <p>Intermediate</p>
-                        </div>
-                    </article>                   
-
-                    <article>
-                        <img decoding="async" src="./assets/material ui.png" alt="Experience icon" class="icon" />
-                        <div>
-                            <h3>Material UI</h3>
-                            <p>Intermediate</p>
-                        </div>
-                    </article>
-                </div>
-            </div>
-            <div class="details-container">
-                <h2 class="experience-sub-title">Development Tools &amp; Softwares</h2>
-                <div class="article-container">
-                     
-                    <article>
-                        <img decoding="async" src="./assets/git.png" alt="Experience icon" class="icon" />
-                        <div>
-                            <h3>Git</h3>
-                            <p>Intermediate</p>
-                        </div>
-                    </article>
-                    <article>
-                        <img decoding="async" src="./assets/github.png" alt="Experience icon" class="icon" />
-                        <div>
-                            <h3>GitHub</h3>
-                            <p>Intermediate</p>
-                        </div>
-                    </article>
-                    <article>
-                        <img decoding="async" src="./assets/figma.png" alt="Experience icon" class="icon" />
-                        <div>
-                            <h3>Figma</h3>
-                            <p>Intermediate</p>
-                        </div>
-                    </article>
-                    <article>
-                        <img decoding="async" src="./assets/canva.png" alt="Experience icon" class="icon" />
-                        <div>
-                            <h3>Canva</h3>
-                            <p>Intermediate</p>
-                        </div>
-                    </article>
-                    <article>
-                        <img decoding="async" src="./assets/netlify.png" alt="Experience icon" class="icon" />
-                        <div>
-                            <h3>Netlify</h3>
-                            <p>Intermediate</p>
-                        </div>
-                    </article>
-                    <article id="lastSkill">
-                        <img decoding="async" src="./assets/vscode.png" alt="Experience icon" class="icon" />
-                        <div>
-                            <h3>VS Code</h3>
-                            <p>Intermediate</p>
-                        </div>
-                    </article>
-
-
-                </div>
-            </div>
+          <div class="social-links" aria-label="Social profiles">
+            <a href="https://github.com/Neeraj-code-beep" target="_blank" rel="noopener noreferrer" aria-label="Neeraj Mishra on GitHub">
+              <img src="./assets/github.png" alt="" class="icon" width="32" height="32" />
+            </a>
+          </div>
         </div>
-    </div>
-    <img decoding="async" src="./assets/arrow.png" alt="Arrow icon" class="icon arrow" />
-</section>
+      </section>
 
-<!-- project section  -->
-
-<section id="projects">
-    <p class="section__text__p1">Browse My Recent</p>
-    <h1 class="title">Projects</h1>
-    <div class="experience-details-container">
-        <div class="about-containers">
-            <div class="details-container color-container" style="text-align: center; padding: 2rem;">
-                <h2 class="experience-sub-title project-title" style="font-size: 1.5rem;">🚧 Projects Coming Soon 🚧</h2>
-                <p style="font-size: 1rem; color: gray;">I'm currently working on some exciting projects. Stay tuned!</p>
-            </div>
+      <section class="page-section" id="about" aria-labelledby="about-title">
+        <p class="eyebrow">Get to know more</p>
+        <h2 class="section-title" id="about-title">About me</h2>
+        <div class="about-content">
+          <div class="about-cards">
+            <article class="card">
+              <img src="./assets/experience.png" alt="" class="icon" width="32" height="32" loading="lazy" />
+              <h3>Development</h3>
+              <p>1+ years<br />Frontend and backend development</p>
+            </article>
+            <article class="card">
+              <img src="./assets/education.png" alt="" class="icon" width="32" height="32" loading="lazy" />
+              <h3>Education</h3>
+              <p>Bachelor of Computer Science Engineering</p>
+            </article>
+          </div>
+          <div class="about-copy">
+            <p>I'm a web developer from India. I build applications with JavaScript, CSS, and Tailwind CSS, with a focus on thoughtful user interface and experience.</p>
+            <p>I enjoy solving problems, learning through projects, and working with teammates to create responsive, intuitive web experiences.</p>
+          </div>
         </div>
-    </div>  
-    <img decoding="async" src="./assets/arrow.png" alt="Arrow icon" class="icon arrow" />
-</section>
+      </section>
 
-<!-- blog section  -->
-
-<section id="blogs">
-    <p class="section__text__p1">Have a Look on My Recent</p>
-    <h1 class="title">Blogs</h1>
-    <div class="experience-details-container">
-        <div class="about-containers">
-            <div class="details-container color-container" style="text-align: center; padding: 2rem;">
-                <h2 class="experience-sub-title project-title" style="font-size: 1.5rem;">📝 Blogs Coming Soon 📝</h2>
-                <p style="font-size: 1rem; color: gray;">I'm working on insightful blog posts. Stay tuned for updates!</p>
-            </div>
-        </div>
-    </div>
-    <img decoding="async" src="./assets/arrow.png" alt="Arrow icon" class="icon arrow" />
-</section>
-
-
-<!-- contact section  -->
-
-<section id="contact">
-    <p class="section__text__p1">Get in Touch</p>
-    <h1 class="title">Contact Me</h1>
-    <div class="contact-info-upper-container">
-        <div class="contact-info-container">
-            <img decoding="async" src="./assets/gmail.png" alt="Email icon" class="icon contact-icon email-icon" />
-            <p><a href="mailto:neerajmishra757944@gmail.com">neerajmishra757944@gmail.com</a></p>
-        </div>
-        <div class="contact-info-container">
-            <img decoding="async" src="./assets/linkedin.png" alt="LinkedIn icon" class="icon contact-icon" />
-            <p><a target="_blank" href="https://www.linkedin.com/" rel="nofollow noopener">LinkedIn</a></p>
-        </div>
-    </div>
-</section>
-
-<!-- footer section  -->
-
-<footer>
-    <nav>
-        <div class="nav-links-container">
-            <ul class="nav-links">
-                <li><a href="#about">About</a></li>
-                <li><a href="#experience">Experience</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#blogs">Blogs</a></li>
-                <li><a href="#contact">Contact</a></li>
+      <section class="page-section" id="experience" aria-labelledby="experience-title">
+        <p class="eyebrow">Tools I work with</p>
+        <h2 class="section-title" id="experience-title">Skills &amp; experience</h2>
+        <div class="skill-groups">
+          <article class="card skill-card">
+            <h3>Frontend development</h3>
+            <ul class="skill-list">
+              <li><img src="./assets/html.png" alt="" width="32" height="32" loading="lazy" /><span>HTML5 <small>Experienced</small></span></li>
+              <li><img src="./assets/css.png" alt="" width="32" height="32" loading="lazy" /><span>CSS3 <small>Experienced</small></span></li>
+              <li><img src="./assets/javscript.png" alt="" width="32" height="32" loading="lazy" /><span>JavaScript <small>Experienced</small></span></li>
+              <li><img src="./assets/react.png" alt="" width="32" height="32" loading="lazy" /><span>React <small>Intermediate</small></span></li>
+              <li><img src="./assets/redux.png" alt="" width="32" height="32" loading="lazy" /><span>Redux <small>Intermediate</small></span></li>
+              <li><img src="./assets/java.png" alt="" width="32" height="32" loading="lazy" /><span>Java <small>Basic</small></span></li>
+              <li><img src="./assets/tailwind.png" alt="" width="32" height="32" loading="lazy" /><span>Tailwind CSS <small>Intermediate</small></span></li>
+              <li><img src="./assets/bootstrap.png" alt="" width="32" height="32" loading="lazy" /><span>Bootstrap <small>Intermediate</small></span></li>
+              <li><img src="./assets/material ui.png" alt="" width="32" height="32" loading="lazy" /><span>Material UI <small>Intermediate</small></span></li>
             </ul>
+          </article>
+          <article class="card skill-card">
+            <h3>Development tools</h3>
+            <ul class="skill-list">
+              <li><img src="./assets/git.png" alt="" width="32" height="32" loading="lazy" /><span>Git <small>Intermediate</small></span></li>
+              <li><img src="./assets/github.png" alt="" width="32" height="32" loading="lazy" /><span>GitHub <small>Intermediate</small></span></li>
+              <li><img src="./assets/figma.png" alt="" width="32" height="32" loading="lazy" /><span>Figma <small>Intermediate</small></span></li>
+              <li><img src="./assets/canva.png" alt="" width="32" height="32" loading="lazy" /><span>Canva <small>Intermediate</small></span></li>
+              <li><img src="./assets/netlify.png" alt="" width="32" height="32" loading="lazy" /><span>Netlify <small>Intermediate</small></span></li>
+              <li><img src="./assets/vscode.png" alt="" width="32" height="32" loading="lazy" /><span>VS Code <small>Intermediate</small></span></li>
+            </ul>
+          </article>
         </div>
-    </nav>
-    <p>Copyright &#169; 2024 @John Doe. All Rights Reserved.</p>
-    <script src="script.js"></script>
+      </section>
+
+      <section class="page-section" id="projects" aria-labelledby="projects-title">
+        <p class="eyebrow">Selected work</p>
+        <h2 class="section-title" id="projects-title">Projects</h2>
+        <div class="project-grid">
+          <article class="card project-card"><h3>Calculator</h3><p>A browser-based calculator with keyboard support.</p><a href="https://github.com/Neeraj-code-beep/Codsoft-Projects/tree/main/Calculator" target="_blank" rel="noopener noreferrer">View source <span aria-hidden="true">↗</span></a></article>
+          <article class="card project-card"><h3>Juice Landing Page</h3><p>A responsive product landing page for a juice brand.</p><a href="https://github.com/Neeraj-code-beep/Codsoft-Projects/tree/main/Juice%20Landing%20page" target="_blank" rel="noopener noreferrer">View source <span aria-hidden="true">↗</span></a></article>
+          <article class="card project-card"><h3>Pig Game</h3><p>A two-player dice game with turn-based scoring.</p><a href="https://github.com/Neeraj-code-beep/Codsoft-Projects/tree/main/Pig-Game" target="_blank" rel="noopener noreferrer">View source <span aria-hidden="true">↗</span></a></article>
+          <article class="card project-card"><h3>To-Do Manager</h3><p>A task manager that saves tasks in the browser.</p><a href="https://github.com/Neeraj-code-beep/Codsoft-Projects/tree/main/To-Do-Manager" target="_blank" rel="noopener noreferrer">View source <span aria-hidden="true">↗</span></a></article>
+        </div>
+      </section>
+
+      <section class="page-section contact-section" id="contact" aria-labelledby="contact-title">
+        <p class="eyebrow">Get in touch</p>
+        <h2 class="section-title" id="contact-title">Contact me</h2>
+        <div class="contact-card">
+          <p><img src="./assets/gmail.png" alt="" width="32" height="32" loading="lazy" /><a href="mailto:neerajmishra757944@gmail.com">neerajmishra757944@gmail.com</a></p>
+          <p><span class="contact-symbol" aria-hidden="true">☎</span><a href="tel:+917534024819">+91 75340 24819</a></p>
+          <p><img src="./assets/github.png" alt="" width="32" height="32" loading="lazy" /><a href="https://github.com/Neeraj-code-beep" target="_blank" rel="noopener noreferrer">GitHub profile</a></p>
+        </div>
+      </section>
+    </main>
+
+    <footer><p>Copyright &#169; 2025 @Neeraj Mishra. All Rights Reserved.</p></footer>
   </body>
 </html>

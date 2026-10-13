@@ -1,65 +1,66 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Tiktok animation site</title>
+		<meta name="theme-color" content="#191629" />
+		<meta name="description" content="Explore four colorful, fruit-inspired juices in a playful interactive showcase." />
+		<title>Fresh Press — Explore the flavors</title>
+		<link rel="preload" as="image" href="./images/juice1.png" />
 		<link rel="stylesheet" href="style.css" />
 		<script src="script.js" defer></script>
 	</head>
 	<body>
-		<main>
-			<nav>
-				<img src="./images/logo.png" alt="logo" class="logo" />
+		<main class="showcase" id="home" aria-label="Fresh Press juice flavors">
+			<nav class="site-nav" aria-label="Main navigation">
+				<a class="brand" href="#home" aria-label="Fresh Press home">
+					<img src="./images/logo.png" alt="" class="logo" width="40" height="40" />
+				</a>
 				<div class="menu-text">
-					<p>Home</p>
-					<p>Flavor</p>
-					<p>About</p>
+					<a href="#home" aria-current="page">Home</a>
+					<a href="#flavors">Flavors</a>
+					<a href="#about">About</a>
 				</div>
-				<button>Shop online</button>
+				<a class="shop-link" href="#flavors">Explore flavors</a>
 			</nav>
-			<div class="content">
-				<div class="juice-text">
-					<h1>Orange Juice</h1>
+
+			<section class="content" aria-labelledby="juice-title">
+				<div class="juice-text" id="about" aria-live="polite" aria-atomic="true">
+					<p class="eyebrow">A little sunshine in every bottle</p>
+					<h1 id="juice-title">Orange Juice</h1>
 					<p class="juice-info">
-						Orange juice is a liquid extract of the orange tree fruit, produced
-						by squeezing or reaming oranges. It comes in several different
-						varieties, including blood orange, navel oranges, valencia orange,
-						clementine, and tangerine.
+						Bright, naturally sweet orange juice with a refreshing citrus finish.
+						A sunny favorite made for slow mornings and fresh starts.
 					</p>
 				</div>
-				<div class="photos">
-					<div class="juice-wrapper activePhoto">
-						<img src="./images/juice1.png" alt="juice1" class="static-juice" />
-					</div>
-					<div class="juice-wrapper">
-						<img src="./images/juice2.png" alt="juice2" class="static-juice" />
-					</div>
-					<div class="juice-wrapper">
-						<img src="./images/juice3.png" alt="juice3" class="static-juice" />
-					</div>
-					<div class="juice-wrapper">
-						<img src="./images/juice4.png" alt="juice4" class="static-juice" />
-					</div>
+
+				<div class="photos" id="flavors" role="group" aria-label="Choose a juice flavor">
+					<button class="juice-wrapper activePhoto" type="button" aria-label="Show Orange Juice" aria-pressed="true">
+						<img src="./images/juice1.png" alt="" class="static-juice" width="600" height="800" fetchpriority="high" />
+					</button>
+					<button class="juice-wrapper" type="button" aria-label="Show Plum Juice" aria-pressed="false">
+						<img src="./images/juice2.png" alt="" class="static-juice" width="600" height="800" loading="lazy" />
+					</button>
+					<button class="juice-wrapper" type="button" aria-label="Show Kiwi Juice" aria-pressed="false">
+						<img src="./images/juice3.png" alt="" class="static-juice" width="600" height="800" loading="lazy" />
+					</button>
+					<button class="juice-wrapper" type="button" aria-label="Show Strawberry Juice" aria-pressed="false">
+						<img src="./images/juice4.png" alt="" class="static-juice" width="600" height="800" loading="lazy" />
+					</button>
 				</div>
+			</section>
+
+			<div class="juice-wheel" aria-hidden="true">
+				<img src="./images/juice1.png" alt="" class="dynamic-juice-1" width="600" height="800" fetchpriority="high" />
+				<img src="./images/juice2.png" alt="" class="dynamic-juice-2" width="600" height="800" loading="lazy" />
+				<img src="./images/juice3.png" alt="" class="dynamic-juice-3" width="600" height="800" loading="lazy" />
+				<img src="./images/juice4.png" alt="" class="dynamic-juice-4" width="600" height="800" loading="lazy" />
 			</div>
-			<div class="juice-wheel">
-				<img src="./images/juice1.png" alt="juice1" class="dynamic-juice-1" />
-				<img src="./images/juice2.png" alt="juice1" class="dynamic-juice-2" />
-				<img src="./images/juice3.png" alt="juice1" class="dynamic-juice-3" />
-				<img src="./images/juice4.png" alt="juice1" class="dynamic-juice-4" />
-			</div>
-			<div class="fruits-wheel">
-				<img
-					src="./images/bgorange.png"
-					alt="orange"
-					class="dynamic-fruits-1" />
-				<img src="./images/bgplumb.png" alt="plumb" class="dynamic-fruits-2" />
-				<img src="./images/bgkiwi.png" alt="kiwi" class="dynamic-fruits-3" />
-				<img
-					src="./images/bgstrawberry.png"
-					alt="strawberry"
-					class="dynamic-fruits-4" />
+			<div class="fruits-wheel" aria-hidden="true">
+				<img src="./images/bgorange.webp" alt="" class="dynamic-fruits-1" width="1300" height="731" />
+				<img src="./images/bgplumb.webp" alt="" class="dynamic-fruits-2" width="1300" height="730" />
+				<img src="./images/bgkiwi.webp" alt="" class="dynamic-fruits-3" width="1300" height="471" />
+				<img src="./images/bgstrawberry.webp" alt="" class="dynamic-fruits-4" width="1300" height="731" />
 			</div>
 		</main>
 	</body>

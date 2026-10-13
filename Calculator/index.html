@@ -3,42 +3,38 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#dde1e7" />
     <link rel="stylesheet" href="style.css" />
     <title>Calculator</title>
   </head>
   <body>
-    <div class="container">
-      <!-- Result Box -->
-      <div class="result">
+    <main class="container" aria-label="Calculator">
+      <div class="result" aria-live="polite" aria-atomic="true">
         <p id="result-box">0</p>
       </div>
 
-      <!-- All Button -->
-      <div class="buttons">
-        <div class="button action-btn" id="clear">AC</div>
-        <div class="button action-btn">MC</div>
-        <div class="button num-button action-btn">%</div>
-        <div class="button num-button calc-action-btn">/</div>
-        <div class="button num-button seven">7</div>
-        <div class="button num-button eight">8</div>
-        <div class="button num-button nine">9</div>
-        <div class="button num-button calc-action-btn">*</div>
-        <div class="button num-button four">4</div>
-        <div class="button num-button five">5</div>
-        <div class="button num-button six">6</div>
-        <div class="button num-button calc-action-btn">-</div>
-        <div class="button num-button one">1</div>
-        <div class="button num-button two">2</div>
-        <div class="button num-button three">3</div>
-        <div class="button num-button calc-action-btn">+</div>
-        <div class="button num-button zero">0</div>
-        <div class="button num-button point">.</div>
-        <div class="button calc-action-btn" id="total">=</div>
+      <div class="buttons" aria-label="Calculator keys">
+        <button class="button action-btn" id="clear" type="button" aria-label="Clear all">AC</button>
+        <button class="button action-btn" id="backspace" type="button" aria-label="Delete last character">⌫</button>
+        <button class="button num-button action-btn" type="button" aria-label="Remainder">%</button>
+        <button class="button num-button calc-action-btn" type="button" aria-label="Divide">/</button>
+        <button class="button num-button" type="button">7</button>
+        <button class="button num-button" type="button">8</button>
+        <button class="button num-button" type="button">9</button>
+        <button class="button num-button calc-action-btn" type="button" aria-label="Multiply">*</button>
+        <button class="button num-button" type="button">4</button>
+        <button class="button num-button" type="button">5</button>
+        <button class="button num-button" type="button">6</button>
+        <button class="button num-button calc-action-btn" type="button" aria-label="Subtract">-</button>
+        <button class="button num-button" type="button">1</button>
+        <button class="button num-button" type="button">2</button>
+        <button class="button num-button" type="button">3</button>
+        <button class="button num-button calc-action-btn" type="button" aria-label="Add">+</button>
+        <button class="button num-button zero" type="button">0</button>
+        <button class="button num-button" type="button" aria-label="Decimal point">.</button>
+        <button class="button calc-action-btn" id="total" type="button" aria-label="Calculate">=</button>
       </div>
-    </div>
-
-    <!-- Partial -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.1.1/gsap.min.js"></script>
+    </main>
     <script src="script.js"></script>
   </body>
 </html>

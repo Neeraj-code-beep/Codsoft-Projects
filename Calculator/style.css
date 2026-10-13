@@ -1,73 +1,143 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
 
+* {
+  box-sizing: border-box;
+}
+
 body {
-  background: linear-gradient(to left top, #dde1e7, #dde1e7);
-  font-family: 'Montserrat', sans-serif;
+  min-height: 100vh;
+  margin: 0;
+  padding: 24px 16px;
+  display: grid;
+  place-items: center;
+  background: #dde1e7;
+  color: #343943;
+  font-family: 'Montserrat', Arial, sans-serif;
 }
 
 .container {
-  background: linear-gradient(to left top, #dde1e7, #dde1e7);
-  width: 320px;
-  height: 550px;
-  border-radius: 0.5em;
-  box-shadow: -3px -3px 7px #ffffff73, 2px 2px 5px rgba(94, 104, 121, 0.288);
-  margin: 0 auto;
+  width: min(100%, 352px);
+  min-height: 550px;
   padding: 32px 16px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  gap: 24px;
+  border-radius: 0.5em;
+  background: #dde1e7;
+  box-shadow: -3px -3px 7px #ffffffb8, 2px 2px 5px rgba(94, 104, 121, 0.288);
 }
 
-.container .result {
+.result {
   width: 100%;
-  height: 150px;
-  box-shadow: inset 2px 2px 5px #babecc, inset -5px -5px 10px #ffffff73;
+  min-height: 150px;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+  border-radius: 8px;
+  box-shadow: inset 2px 2px 5px #babecc, inset -5px -5px 10px #ffffffb8;
 }
 
-.container .result p {
-  font-size: 40pt;
-  overflow-y: auto;
+.result p {
+  width: 100%;
+  margin: 0;
+  padding: 16px;
+  overflow-x: auto;
+  overflow-y: hidden;
   text-align: right;
+  white-space: nowrap;
+  font-size: clamp(2rem, 10vw, 3.25rem);
+  scrollbar-width: thin;
 }
 
-.container .buttons {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-gap: 1em;
+.result p.error {
+  color: #8b1e3f;
+  font-size: clamp(1rem, 6vw, 1.5rem);
 }
-.container .buttons .button,
-.container .buttons.num-button {
-  cursor: grab;
-  text-align: center;
-  font-weight: bold;
-  width: 60px;
-  font-size: 18px;
-  height: 60px;
+
+.buttons {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(10px, 3.5vw, 16px);
+}
+
+.button {
+  width: 100%;
+  aspect-ratio: 1;
+  padding: 0;
   display: grid;
   place-content: center;
+  border: 0;
   border-radius: 50%;
-  box-shadow: 2px 2px 5px #babecc, -5px -5px 10px #ffffff73;
+  background: #dde1e7;
+  box-shadow: 2px 2px 5px #babecc, -5px -5px 10px #ffffffb8;
+  color: #343943;
+  cursor: pointer;
+  font: inherit;
+  font-size: 18px;
+  font-weight: 700;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .button:hover {
-  color: #3498db;
+  color: #2876a8;
 }
 
-.container .buttons .zero {
-  grid-column: 1/3;
-  width: 100%;
-  font-size: 18px;
-  border-radius: 10px;
-  box-shadow: 2px 2px 5px #babecc, -5px -5px 10px #ffffff73;
+.button:active {
+  box-shadow: inset 2px 2px 5px #babecc, inset -3px -3px 7px #ffffffb8;
+}
+
+.button:focus-visible {
+  outline: 3px solid #2876a8;
+  outline-offset: 3px;
 }
 
 .action-btn {
-  color: grey;
-  font-weight: bold;
+  color: #555b65;
 }
 
 .calc-action-btn {
-  color: purple;
+  color: #6f2879;
   font-size: 20px;
-  font-weight: bolder;
+}
+
+.zero {
+  grid-column: span 2;
+  aspect-ratio: auto;
+  border-radius: 10px;
+}
+
+@media (max-height: 620px) {
+  body {
+    padding-block: 12px;
+  }
+
+  .container {
+    min-height: 0;
+    gap: 16px;
+    padding-block: 16px;
+  }
+
+  .result {
+    min-height: 100px;
+  }
+
+  .buttons {
+    gap: 10px;
+  }
+}
+
+@media (max-width: 360px) {
+  body {
+    padding-inline: 12px;
+  }
+
+  .container {
+    min-height: 0;
+    padding: 22px 14px;
+  }
+
+  .result {
+    min-height: 120px;
+  }
 }

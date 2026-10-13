@@ -1,97 +1,95 @@
 'use strict';
 
-// Selecting elements
-const player0El = document.querySelector('.player--0');
-const player1El = document.querySelector('.player--1');
-const score0El = document.querySelector('#score--0');
-const score1El = document.getElementById('score--1');
-const current0El = document.getElementById('current--0');
-const current1El = document.getElementById('current--1');
+const TARGET_SCORE = 100;
+const players = [document.querySelector('.player--0'), document.querySelector('.player--1')];
+const scoreDisplays = [document.querySelector('#score--0'), document.querySelector('#score--1')];
+const currentDisplays = [document.querySelector('#current--0'), document.querySelector('#current--1')];
+const dice = document.querySelector('.dice');
+const status = document.querySelector('#game-status');
+const newGameButton = document.querySelector('.btn--new');
+const rollButton = document.querySelector('.btn--roll');
+const holdButton = document.querySelector('.btn--hold');
 
-const diceEl = document.querySelector('.dice');
-const btnNew = document.querySelector('.btn--new');
-const btnRoll = document.querySelector('.btn--roll');
-const btnHold = document.querySelector('.btn--hold');
+let scores;
+let currentScore;
+let activePlayer;
+let playing;
 
-let scores, currentScore, activePlayer, playing;
+function setStatus(message) {
+	status.textContent = message;
+}
 
-// Starting conditions
-const init = function () {
-  scores = [0, 0];
-  currentScore = 0;
-  activePlayer = 0;
-  playing = true;
+function startNewGame() {
+	scores = [0, 0];
+	currentScore = 0;
+	activePlayer = 0;
+	playing = true;
 
-  score0El.textContent = 0;
-  score1El.textContent = 0;
-  current0El.textContent = 0;
-  current1El.textContent = 0;
+	scoreDisplays.forEach((display) => { display.textContent = '0'; });
+	currentDisplays.forEach((display) => { display.textContent = '0'; });
+	players.forEach((player, index) => {
+		player.classList.remove('player--winner');
+		player.classList.toggle('player--active', index === activePlayer);
+	});
 
-  diceEl.classList.add('hidden');
-  player0El.classList.remove('player--winner');
-  player1El.classList.remove('player--winner');
-  player0El.classList.add('player--active');
-  player1El.classList.remove('player--active');
-};
-init();
+	dice.src = 'assets/dice-5.png';
+	dice.alt = 'Die not rolled yet';
+	dice.classList.add('hidden');
+	rollButton.disabled = false;
+	holdButton.disabled = false;
+	setStatus('New game. Player 1 starts.');
+}
 
-const switchPlayer = function () {
-  document.getElementById(`current--${activePlayer}`).textContent = 0;
-  currentScore = 0;
-  activePlayer = activePlayer === 0 ? 1 : 0;
-  player0El.classList.toggle('player--active');
-  player1El.classList.toggle('player--active');
-};
+function switchPlayer(message) {
+	currentDisplays[activePlayer].textContent = '0';
+	currentScore = 0;
+	activePlayer = activePlayer === 0 ? 1 : 0;
+	players.forEach((player, index) => {
+		player.classList.toggle('player--active', index === activePlayer);
+	});
+	setStatus(`${message} Player ${activePlayer + 1}'s turn.`);
+}
 
-// Rolling dice functionality
-btnRoll.addEventListener('click', function () {
-  if (playing) {
-    // 1. Generating a random dice roll
-    const dice = Math.trunc(Math.random() * 6) + 1;
+rollButton.addEventListener('click', () => {
+	if (!playing) return;
 
-    // 2. Display dice
-    diceEl.classList.remove('hidden');
-    diceEl.src = `assets/dice-${dice}.png`;
+	const roll = Math.trunc(Math.random() * 6) + 1;
+	dice.src = `assets/dice-${roll}.png`;
+	dice.alt = `Die showing ${roll}`;
+	dice.classList.remove('hidden');
 
-    // 3. Check for rolled 1
-    if (dice !== 1) {
-      // Add dice to current score
-      currentScore += dice;
-      document.getElementById(`current--${activePlayer}`).textContent =
-        currentScore;
-    } else {
-      // Switch to next player
-      switchPlayer();
-    }
-  }
+	if (roll === 1) {
+		switchPlayer(`Player ${activePlayer + 1} rolled a 1. Their turn score was lost.`);
+		return;
+	}
+
+	currentScore += roll;
+	currentDisplays[activePlayer].textContent = String(currentScore);
+	setStatus(`Player ${activePlayer + 1} rolled ${roll}. Turn score: ${currentScore}.`);
 });
 
-btnHold.addEventListener('click', function () {
-  if (playing) {
-    // 1. Add current score to active player's score
-    scores[activePlayer] += currentScore;
-    // scores[1] = scores[1] + currentScore
+holdButton.addEventListener('click', () => {
+	if (!playing) return;
 
-    document.getElementById(`score--${activePlayer}`).textContent =
-      scores[activePlayer];
+	scores[activePlayer] += currentScore;
+	scoreDisplays[activePlayer].textContent = String(scores[activePlayer]);
+	currentScore = 0;
+	currentDisplays[activePlayer].textContent = '0';
 
-    // 2. Check if player's score is >= 100
-    if (scores[activePlayer] >= 100) {
-      // Finish the game
-      playing = false;
-      diceEl.classList.add('hidden');
+	if (scores[activePlayer] >= TARGET_SCORE) {
+		playing = false;
+		players[activePlayer].classList.remove('player--active');
+		players[activePlayer].classList.add('player--winner');
+		dice.classList.add('hidden');
+		rollButton.disabled = true;
+		holdButton.disabled = true;
+		setStatus(`Player ${activePlayer + 1} wins with ${scores[activePlayer]} points! Start a new game to play again.`);
+		return;
+	}
 
-      document
-        .querySelector(`.player--${activePlayer}`)
-        .classList.add('player--winner');
-      document
-        .querySelector(`.player--${activePlayer}`)
-        .classList.remove('player--active');
-    } else {
-      // Switch to the next player
-      switchPlayer();
-    }
-  }
+	switchPlayer(`Player ${activePlayer + 1} banked their points.`);
 });
 
-btnNew.addEventListener('click', init);
+newGameButton.addEventListener('click', startNewGame);
+
+startNewGame();

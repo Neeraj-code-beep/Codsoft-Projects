@@ -1,86 +1,305 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
 
-* {
+:root {
   box-sizing: border-box;
+  font-family: 'Poppins', Arial, sans-serif;
+  color: #261f2a;
+  background: #211326;
+  font-synthesis: none;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+html {
+  min-width: 320px;
+  font-size: 62.5%;
 }
 
 body {
-  background-image: url(bg-image.jpg);
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: cover;
-
-  font-family: 'Poppins', sans-serif;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
+  min-width: 320px;
+  min-height: 100vh;
+  min-height: 100svh;
   margin: 0;
+  padding: clamp(2.4rem, 6vh, 5.6rem) 1.6rem;
+  display: grid;
+  place-items: start center;
+  background-color: #211326;
+  background-image: linear-gradient(rgba(22, 9, 25, 0.2), rgba(22, 9, 25, 0.48)), url('bg-image.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.todo-app {
+  width: min(56rem, 100%);
+  margin: auto;
+}
+
+.page-heading {
+  margin-bottom: 2.4rem;
+  color: #fff;
+  text-align: center;
+  text-shadow: 0 2px 12px rgba(32, 12, 34, 0.45);
+}
+
+.thought {
+  margin: 0 0 0.4rem;
+  font-size: 1.5rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
 }
 
 h1 {
-  color: plum;
-  font-size: 10rem;
-  text-align: center;
-  opacity: 0.9;
+  margin: 0;
+  color: #f3c9f4;
+  font-size: clamp(5.2rem, 12vw, 8rem);
+  font-weight: 600;
+  line-height: 1;
 }
-.thought h2 {
-  color: black;
-  opacity: 0.3;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-form {
-  box-shadow: 0 10px 10px rgba(26, 2, 2, 0.1);
 
-  max-width: 100%;
-  width: 500px;
+.task-form {
+  display: flex;
+  gap: 0.8rem;
+  padding: 0.8rem;
+  border-radius: 1.4rem;
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: 0 1rem 3rem rgba(20, 5, 25, 0.22);
 }
 
 .input {
-  color: #444;
-  font-size: 2rem;
-  padding: 1rem 2rem;
-  display: block;
   width: 100%;
-  border-radius: 15px;
-  border: none;
+  min-width: 0;
+  min-height: 4.8rem;
+  padding: 1rem 1.2rem;
+  border: 2px solid transparent;
+  border-radius: 0.8rem;
+  background: transparent;
+  color: #261f2a;
+  font: inherit;
+  font-size: 1.7rem;
 }
 
 .input::placeholder {
-  color: #d5d5d5;
+  color: #6f6572;
+  opacity: 1;
 }
 
-.input:focus {
-  outline-color: rgb(179, 131, 226);
+.input:focus-visible {
+  border-color: #743b82;
+  outline: none;
 }
 
-ul {
-  border-radius: 20px;
+.add-button {
+  flex: 0 0 auto;
+  min-height: 4.8rem;
+  padding: 0.8rem 1.6rem;
+  border: 0;
+  border-radius: 0.8rem;
+  background: #743b82;
+  color: #fff;
+  cursor: pointer;
+  font: inherit;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.add-button:hover {
+  background: #5f2c6b;
+}
+
+.input-help {
+  margin: 0.8rem 0 2rem;
+  color: #fff;
+  font-size: 1.25rem;
+  text-align: center;
+  text-shadow: 0 1px 5px rgba(24, 8, 27, 0.8);
+}
+
+.task-panel {
+  padding: 1.6rem;
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  border-radius: 1.4rem;
+  background: rgba(255, 255, 255, 0.94);
+  box-shadow: 0 1rem 3rem rgba(20, 5, 25, 0.2);
+}
+
+.list-heading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.list-heading h2 {
+  margin: 0;
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+
+.todo-count {
+  margin: 0;
+  color: #5f5661;
+  font-size: 1.25rem;
+  text-align: right;
 }
 
 .todos {
-  background-color: #fff;
+  max-height: min(46vh, 40rem);
+  margin: 1.2rem 0 0;
   padding: 0;
-  margin-top: 20px;
-  list-style-type: none;
+  overflow-x: hidden;
+  overflow-y: auto;
+  border-radius: 0.8rem;
+  background: #fff;
+  list-style: none;
 }
 
-.todos li {
-  /* border-top: 1px solid #e5e5e5; */
+.todo-row,
+.empty-state {
+  min-height: 5.6rem;
+  padding: 0.8rem 0.6rem 0.8rem 1rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  border-bottom: 1px solid #e9e4eb;
+}
+
+.todo-row:last-child {
+  border-bottom: 0;
+}
+
+.todo-checkbox {
+  flex: 0 0 auto;
+  width: 2rem;
+  height: 2rem;
+  margin: 0;
+  accent-color: #743b82;
   cursor: pointer;
-  font-size: 1.5rem;
-  padding: 1rem 2rem;
 }
 
-.todos li.completed {
-  color: #b6b6b6;
+.todo-text {
+  flex: 1 1 auto;
+  min-width: 0;
+  padding: 0.3rem 0;
+  color: #302b32;
+  font-size: 1.55rem;
+  line-height: 1.45;
+  overflow-wrap: anywhere;
+}
+
+.todo-row.completed .todo-text {
+  color: #625a65;
   text-decoration: line-through;
+  text-decoration-thickness: 0.15em;
 }
 
-small {
-  color: darkgrey;
-  margin-top: 3rem;
+.delete-button {
+  flex: 0 0 auto;
+  width: 4rem;
+  height: 4rem;
+  border: 0;
+  border-radius: 0.8rem;
+  background: transparent;
+  color: #5a285e;
+  cursor: pointer;
+  font: inherit;
+  font-size: 2.2rem;
+  line-height: 1;
+}
+
+.delete-button:hover {
+  background: #f3eaf4;
+}
+
+.empty-state {
+  justify-content: center;
+  color: #655d68;
+  font-size: 1.4rem;
   text-align: center;
-  opacity: 0.6;
+}
+
+.status {
+  min-height: 2rem;
+  margin: 1rem 0 0;
+  color: #fff;
+  font-size: 1.3rem;
+  text-align: center;
+  text-shadow: 0 1px 5px rgba(24, 8, 27, 0.85);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  clip-path: inset(50%);
+  border: 0;
+}
+
+button:focus-visible,
+.todo-checkbox:focus-visible,
+.todo-text:focus-visible {
+  outline: 3px solid #2c1733;
+  outline-offset: 2px;
+}
+
+@media (max-width: 380px) {
+  body {
+    padding-inline: 1.2rem;
+  }
+
+  .task-panel {
+    padding: 1.2rem;
+  }
+
+  .task-form {
+    gap: 0.4rem;
+    padding: 0.6rem;
+  }
+
+  .input {
+    padding-inline: 0.8rem;
+    font-size: 1.5rem;
+  }
+
+  .add-button {
+    padding-inline: 1.1rem;
+    font-size: 1.35rem;
+  }
+}
+
+@media (max-height: 520px) {
+  body {
+    padding-block: 2rem;
+  }
+
+  .todo-app {
+    margin-block: 0;
+  }
+
+  .page-heading {
+    margin-bottom: 1.4rem;
+  }
+
+  .todos {
+    max-height: 38vh;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

@@ -1,171 +1,338 @@
-@import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap');
 
-* {
-  margin: 0;
-  padding: 0;
+:root {
+  box-sizing: border-box;
+  font-family: 'Nunito', Arial, sans-serif;
+  color: #333;
+  background: #753682;
+  font-synthesis: none;
+}
+
+*,
+*::before,
+*::after {
   box-sizing: inherit;
 }
 
 html {
   font-size: 62.5%;
-  box-sizing: border-box;
 }
 
 body {
-  font-family: 'Nunito', sans-serif;
-  font-weight: 400;
-  height: 100vh;
-  color: #333;
-  background-image: linear-gradient(to top left, #753682 0%, #bf2e34 100%);
+  min-width: 320px;
+  min-height: 100vh;
+  min-height: 100svh;
+  margin: 0;
+  padding: 2.4rem;
   display: flex;
   align-items: center;
   justify-content: center;
+  background: linear-gradient(to top left, #753682 0%, #bf2e34 100%);
 }
 
-/* LAYOUT */
-main {
+.game {
   position: relative;
-  width: 100rem;
-  height: 60rem;
-  background-color: rgba(255, 255, 255, 0.35);
-  backdrop-filter: blur(200px);
-  filter: blur();
-  box-shadow: 0 3rem 5rem rgba(0, 0, 0, 0.25);
-  border-radius: 9px;
-  overflow: hidden;
   display: flex;
+  width: min(100rem, 100%);
+  min-height: 60rem;
+  overflow: hidden;
+  border-radius: 9px;
+  background: rgba(255, 255, 255, 0.35);
+  box-shadow: 0 3rem 5rem rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(2px);
 }
 
 .player {
-  flex: 50%;
+  flex: 1 1 50%;
+  min-width: 0;
   padding: 9rem;
   display: flex;
   flex-direction: column;
   align-items: center;
-  transition: all 0.75s;
-}
-
-/* ELEMENTS */
-.name {
-  position: relative;
-  font-size: 4rem;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  word-spacing: 2px;
-  font-weight: 300;
-  margin-bottom: 1rem;
-}
-
-.score {
-  font-size: 8rem;
-  font-weight: 300;
-  color: #c7365f;
-  margin-bottom: auto;
+  transition: background-color 220ms ease;
 }
 
 .player--active {
   background-color: rgba(255, 255, 255, 0.4);
 }
+
+.name {
+  position: relative;
+  margin: 0 0 1rem;
+  font-size: 4rem;
+  font-weight: 400;
+  letter-spacing: 1px;
+  text-align: center;
+  text-transform: uppercase;
+}
+
 .player--active .name {
   font-weight: 700;
 }
-.player--active .score {
+
+.score {
+  margin: 0 0 auto;
+  color: #a51f49;
+  font-size: 8rem;
   font-weight: 400;
+  line-height: 1.1;
+}
+
+.current {
+  width: 65%;
+  padding: 2rem;
+  border-radius: 9px;
+  background-color: #a51f49;
+  color: #fff;
+  text-align: center;
+  opacity: 0.82;
+  transition: opacity 220ms ease;
 }
 
 .player--active .current {
   opacity: 1;
 }
 
-.current {
-  background-color: #c7365f;
-  opacity: 0.8;
-  border-radius: 9px;
-  color: #fff;
-  width: 65%;
-  padding: 2rem;
-  text-align: center;
-  transition: all 0.75s;
-}
-
 .current-label {
-  text-transform: uppercase;
-  margin-bottom: 1rem;
+  margin: 0 0 1rem;
+  color: #fff;
   font-size: 1.7rem;
-  color: #ddd;
+  text-transform: uppercase;
 }
 
 .current-score {
+  margin: 0;
   font-size: 3.5rem;
+  line-height: 1.1;
 }
 
-/* ABSOLUTE POSITIONED ELEMENTS */
 .btn {
   position: absolute;
   left: 50%;
+  z-index: 2;
+  padding: 0.9rem 2rem;
   transform: translateX(-50%);
-  color: #444;
-  background: none;
-  border: none;
-  font-family: inherit;
-  font-size: 1.8rem;
-  text-transform: uppercase;
-  cursor: pointer;
-  font-weight: 400;
-  transition: all 0.2s;
-
-  background-color: white;
-  background-color: rgba(255, 255, 255, 0.6);
-  backdrop-filter: blur(10px);
-
-  padding: 0.7rem 2.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.7);
   border-radius: 50rem;
+  background: rgba(255, 255, 255, 0.78);
   box-shadow: 0 1.75rem 3.5rem rgba(0, 0, 0, 0.1);
+  color: #29212d;
+  cursor: pointer;
+  font: inherit;
+  font-size: 1.6rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  white-space: nowrap;
+  transition: background-color 150ms ease, box-shadow 150ms ease, transform 150ms ease;
+  backdrop-filter: blur(10px);
 }
 
-.btn::first-letter {
-  font-size: 2.4rem;
-  display: inline-block;
-  margin-right: 0.7rem;
+.btn span {
+  margin-right: 0.45rem;
+}
+
+.btn:hover:not(:disabled) {
+  background: #fff;
+}
+
+.btn:active:not(:disabled) {
+  transform: translate(-50%, 2px);
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.15);
+}
+
+.btn:focus-visible {
+  outline: 3px solid #201727;
+  outline-offset: 3px;
+}
+
+.btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.48;
+  box-shadow: none;
 }
 
 .btn--new {
   top: 4rem;
 }
+
 .btn--roll {
   top: 39.3rem;
 }
+
 .btn--hold {
   top: 46.1rem;
 }
 
-.btn:active {
-  transform: translate(-50%, 3px);
-  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.15);
-}
-
-.btn:focus {
-  outline: none;
-}
-
 .dice {
   position: absolute;
-  left: 50%;
   top: 16.5rem;
-  transform: translateX(-50%);
+  left: 50%;
+  z-index: 1;
+  width: 10rem;
   height: 10rem;
+  transform: translateX(-50%);
+  border-radius: 8px;
   box-shadow: 0 2rem 5rem rgba(0, 0, 0, 0.2);
 }
 
 .player--winner {
-  background-color: #2f2f2f;
+  background: #2f2f2f;
 }
 
 .player--winner .name {
+  color: #ffb4c9;
   font-weight: 700;
-  color: #c7365f;
 }
 
 .hidden {
   display: none;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  clip-path: inset(50%);
+  border: 0;
+}
+
+@media (max-width: 800px) {
+  body {
+    padding: 1.6rem;
+    align-items: flex-start;
+  }
+
+  .game {
+    width: 100%;
+    min-height: 56rem;
+  }
+
+  .player {
+    padding: 7rem 3rem 6rem;
+  }
+
+  .name {
+    font-size: clamp(2.2rem, 5vw, 3.4rem);
+  }
+
+  .score {
+    font-size: clamp(6rem, 10vw, 7.5rem);
+  }
+
+  .current {
+    width: 90%;
+    padding: 1.5rem 1rem;
+  }
+
+  .dice {
+    width: 8.5rem;
+    height: 8.5rem;
+  }
+}
+
+@media (max-width: 600px) {
+  body {
+    padding: 1.2rem;
+  }
+
+  .game {
+    min-height: 58rem;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-rows: minmax(42rem, 1fr) 16rem;
+  }
+
+  .player {
+    grid-row: 1;
+    padding: 8rem 1rem 4rem;
+  }
+
+  .name {
+    min-height: 5.6rem;
+    font-size: clamp(1.8rem, 6vw, 2.7rem);
+    line-height: 1.05;
+  }
+
+  .score {
+    font-size: clamp(5.6rem, 18vw, 7rem);
+  }
+
+  .current {
+    width: 94%;
+    padding: 1.2rem 0.6rem;
+  }
+
+  .current-label {
+    margin-bottom: 0.6rem;
+    font-size: 1.3rem;
+  }
+
+  .current-score {
+    font-size: 2.8rem;
+  }
+
+  .dice {
+    top: 38%;
+    width: 7.5rem;
+    height: 7.5rem;
+  }
+
+  .btn {
+    padding: 0.8rem 1.4rem;
+    font-size: 1.35rem;
+  }
+
+  .btn--new {
+    top: 1.4rem;
+  }
+
+  .btn--roll {
+    top: auto;
+    bottom: 8.4rem;
+  }
+
+  .btn--hold {
+    top: auto;
+    bottom: 2.2rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .player {
+    padding-inline: 0.7rem;
+  }
+
+  .name {
+    font-size: 1.8rem;
+  }
+
+  .current-label {
+    font-size: 1.2rem;
+  }
+
+  .btn {
+    padding-inline: 1.1rem;
+    font-size: 1.25rem;
+  }
+}
+
+@media (max-height: 620px) and (min-width: 601px) {
+  body {
+    align-items: flex-start;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

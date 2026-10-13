@@ -1,59 +1,66 @@
-const juiceArray = document.querySelectorAll(".juice-wrapper");
-const title = document.querySelector("h1");
-const description = document.querySelector(".juice-info");
-const juiceWheel = document.querySelector(".juice-wheel");
-const fruitsWheel = document.querySelector(".fruits-wheel");
-const juiceText = document.querySelector(".juice-text");
+const flavorButtons = document.querySelectorAll('.juice-wrapper');
+const showcase = document.querySelector('.showcase');
+const title = document.querySelector('#juice-title');
+const description = document.querySelector('.juice-info');
+const juiceWheel = document.querySelector('.juice-wheel');
+const fruitsWheel = document.querySelector('.fruits-wheel');
+const juiceText = document.querySelector('.juice-text');
 
-let currentJuice = juiceArray[0];
-let deg = -45;
-
-const juiceData = [
-  {
-    name: "Orange Juice",
-    descriptioN:
-      "Orange juice is a liquid extract of the orange tree fruit, produced by squeezing or reaming oranges. It comes in several different varieties, including blood orange, navel oranges, valencia orange, clementine, and tangerine.",
-    backgroundColor:
-      "linear-gradient(90deg, rgba(167,162,244,1) 0%, rgba(112,112,143,1) 35%, rgba(166,149,13,1) 100%, rgba(0,212,255,1) 100%)",
-  },
-  {
-    name: "Plum Juice",
-    descriptioN:
-      "A luscious elixir extracted from ripe plums. Bursting with rich flavor and natural sweetness, it delivers a refreshing and satisfying experience. Indulge in the succulent essence of plums while enjoying the numerous health benefits it offers.",
-    backgroundColor:
-      "linear-gradient(90deg, rgba(2,19,45,1) 4%, rgba(120,109,181,1) 49%, rgba(230,132,132,1) 100%, rgba(0,212,255,1) 100%)",
-  },
-  {
-    name: "Kiwi Juice",
-    descriptioN:
-      "A vibrant and tangy elixir extracted from ripe kiwis. Packed with essential nutrients, it offers a refreshing and invigorating experience. The perfect balance of sweetness and tanginess makes it a popular choice for a healthy and flavorful beverage.",
-    backgroundColor:
-      "linear-gradient(90deg, rgba(9,111,55,1) 0%, rgba(39,196,129,1) 49%, rgba(47,209,232,1) 100%, rgba(0,212,255,1) 100%)",
-  },
-  {
-    name: "Strawberry Juice",
-    descriptioN:
-      "Strawberry Juice is a refreshing fresh fruit juice that is full of vitamin C and antioxidants and lot of invigorating flavor. Apart from fresh and ripe strawberries, this recipe also uses lime juice to make it tantalizing.",
-    backgroundColor:
-      "linear-gradient(90deg, rgba(101,18,18,1) 0%, rgba(186,44,44,1) 49%, rgba(235,134,80,1) 100%, rgba(0,212,255,1) 100%)",
-  },
+const flavors = [
+	{
+		name: 'Orange Juice',
+		description: 'Bright, naturally sweet orange juice with a refreshing citrus finish. A sunny favorite made for slow mornings and fresh starts.',
+		background: 'linear-gradient(110deg, #8d88cd 0%, #686987 43%, #a6950d 100%)',
+	},
+	{
+		name: 'Plum Juice',
+		description: 'A deep, mellow plum flavor with a soft natural sweetness and a refreshing finish. Rich in color and full of character.',
+		background: 'linear-gradient(110deg, #263557 0%, #786db5 48%, #a95068 100%)',
+	},
+	{
+		name: 'Kiwi Juice',
+		description: 'A bright, tangy kiwi blend with a lively balance of sweet and tart. Fresh, vibrant, and wonderfully refreshing.',
+		background: 'linear-gradient(110deg, #17643d 0%, #27a879 50%, #2fb7b8 100%)',
+	},
+	{
+		name: 'Strawberry Juice',
+		description: 'A sweet, fragrant strawberry favorite with a little citrus brightness. Smooth, refreshing, and full of berry flavor.',
+		background: 'linear-gradient(110deg, #6c202e 0%, #ba3e4f 52%, #eb8650 100%)',
+	},
 ];
 
-juiceArray.forEach((element, index) => {
-  element.addEventListener("click", () => {
-    document.querySelector("main").style.background =
-      juiceData[index].backgroundColor;
-    deg = deg - 90;
-    juiceWheel.style.transform = `rotate(${deg}deg)`;
-    fruitsWheel.style.transform = `rotate(${deg}deg)`;
-    title.innerHTML = juiceData[index].name;
-    description.innerHTML = juiceData[index].descriptioN;
-    currentJuice.classList.remove("activePhoto");
-    element.classList.add("activePhoto");
-    currentJuice = element;
-    juiceText.classList.add("fade-in");
-    setTimeout(() => {
-      juiceText.classList.remove("fade-in");
-    }, 1000);
-  });
+function selectFlavor(index) {
+	const flavor = flavors[index];
+	if (!flavor) return;
+
+	showcase.style.background = flavor.background;
+	const rotation = -45 - index * 90;
+	juiceWheel.style.transform = `rotate(${rotation}deg) scale(var(--carousel-scale))`;
+	fruitsWheel.style.transform = `rotate(${rotation}deg) scale(var(--fruit-scale))`;
+	title.textContent = flavor.name;
+	description.textContent = flavor.description;
+
+	flavorButtons.forEach((button, buttonIndex) => {
+		const isSelected = buttonIndex === index;
+		button.classList.toggle('activePhoto', isSelected);
+		button.setAttribute('aria-pressed', String(isSelected));
+	});
+
+	juiceText.classList.remove('fade-in');
+	void juiceText.offsetWidth;
+	juiceText.classList.add('fade-in');
+}
+
+flavorButtons.forEach((button, index) => {
+	button.addEventListener('click', () => selectFlavor(index));
+});
+
+document.querySelector('.photos').addEventListener('keydown', (event) => {
+	if (event.key !== 'ArrowRight' && event.key !== 'ArrowLeft') return;
+	event.preventDefault();
+	const selectedIndex = [...flavorButtons].findIndex((button) => button.getAttribute('aria-pressed') === 'true');
+	const direction = event.key === 'ArrowRight' ? 1 : -1;
+	const nextIndex = (selectedIndex + direction + flavorButtons.length) % flavorButtons.length;
+	flavorButtons[nextIndex].focus();
+	selectFlavor(nextIndex);
 });
