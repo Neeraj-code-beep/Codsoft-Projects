@@ -84,6 +84,9 @@ a {
 }
 
 .menu-text a {
+	min-height: 44px;
+	display: flex;
+	align-items: center;
 	text-decoration: none;
 	text-underline-offset: 5px;
 }
@@ -95,7 +98,11 @@ a {
 
 .shop-link {
 	flex: 0 0 auto;
+	min-height: 44px;
 	padding: 10px 18px;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
 	border: 1px solid rgba(255, 255, 255, 0.85);
 	border-radius: 14px;
 	color: #fff;
@@ -354,6 +361,49 @@ h1 {
 
 	.juice-info {
 		font-size: 0.9rem;
+	}
+}
+
+@media (max-width: 420px) {
+	.site-nav {
+		display: grid;
+		grid-template-columns: 1fr auto;
+		grid-template-areas:
+			"brand brand"
+			"links action";
+		row-gap: 8px;
+	}
+
+	.brand {
+		grid-area: brand;
+		justify-self: start;
+	}
+	.shop-link { grid-area: action; }
+
+	.menu-text {
+		grid-area: links;
+		min-width: 0;
+		justify-content: flex-start;
+		gap: 12px;
+		font-size: 0.8rem;
+	}
+}
+
+@media (max-width: 700px) {
+	.juice-wheel {
+		right: -268px;
+		bottom: 82px;
+		--carousel-scale: 0.4;
+	}
+
+	.juice-wheel img:not(.active-juice) {
+		visibility: hidden;
+	}
+}
+
+@media (max-width: 700px) and (max-height: 620px) {
+	.juice-wheel {
+		display: none;
 	}
 }
 

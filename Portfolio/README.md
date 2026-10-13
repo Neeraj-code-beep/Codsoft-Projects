@@ -4,7 +4,7 @@ A responsive, single-page portfolio for presenting Neeraj Mishra's background, s
 
 ## Features
 
-- About, skills, selected projects, and contact sections with working in-page navigation.
+- About, skills, selected projects, a Blogs coming soon section, and contact details with working in-page navigation.
 - Mobile navigation that supports keyboard activation, Escape to close, and automatic closing after choosing a section.
 - Light and dark themes synchronized across controls and saved in browser local storage when available.
 - Direct email and phone links, plus GitHub links for the profile and project source.

@@ -1,4 +1,5 @@
 const flavorButtons = document.querySelectorAll('.juice-wrapper');
+const juiceImages = document.querySelectorAll('.juice-wheel img');
 const showcase = document.querySelector('.showcase');
 const title = document.querySelector('#juice-title');
 const description = document.querySelector('.juice-info');
@@ -45,6 +46,9 @@ function selectFlavor(index) {
 		button.classList.toggle('activePhoto', isSelected);
 		button.setAttribute('aria-pressed', String(isSelected));
 	});
+	juiceImages.forEach((image, imageIndex) => {
+		image.classList.toggle('active-juice', imageIndex === index);
+	});
 
 	juiceText.classList.remove('fade-in');
 	void juiceText.offsetWidth;
@@ -64,3 +68,5 @@ document.querySelector('.photos').addEventListener('keydown', (event) => {
 	flavorButtons[nextIndex].focus();
 	selectFlavor(nextIndex);
 });
+
+selectFlavor(0);
