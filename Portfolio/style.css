@@ -73,6 +73,7 @@ main { display: block; }
 .page-section { max-width: 1120px; margin: 0 auto; padding: 4rem 2rem; scroll-margin-top: 1rem; }
 .section-title { margin: .25rem 0 2rem; font-size: clamp(2rem, 4vw, 2.8rem); line-height: 1.2; text-align: center; }
 .about-content { max-width: 900px; margin: 0 auto; }
+.blog-card { text-align: center; }
 .about-cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
 .card { min-width: 0; padding: 1.5rem; border: 1px solid var(--border); border-radius: 1.25rem; background: var(--surface); box-shadow: var(--shadow); }
 .about-cards .card { text-align: center; }
@@ -100,6 +101,7 @@ main { display: block; }
 .contact-symbol { display: grid; place-items: center; font-size: 1.5rem; }
 footer { padding: 1.5rem 1rem 2rem; color: var(--muted); text-align: center; }
 footer p { margin: 0; }
+.footer-links { justify-content: center; flex-wrap: wrap; margin-bottom: 1rem; }
 
 @media (max-width: 900px) {
   .desktop-nav { display: none; }
