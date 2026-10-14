@@ -1,51 +1,36 @@
-# Pig Game
+# Pig-Game
 
-A two-player dice game with a turn score that players can either grow or bank. This version keeps the familiar split-player layout and uses the six supplied dice images.
+A two-player, turn-based dice game. Each player chooses whether to keep building a temporary turn score or bank it in their total.
 
-## Rules and features
+## Rules
 
-- Players take turns rolling a six-sided die.
-- Rolls from 2 to 6 add to the active player's temporary turn score.
-- Rolling a 1 clears that turn score and passes play to the other player.
-- Hold adds the temporary score to the player's total and passes the turn.
-- The first player to bank at least 100 points wins. Roll and Hold are disabled until New Game is selected.
-- New Game resets both totals, both turn scores, the active player, die, winner styling, status, and controls.
+- Player 1 starts. Players alternate turns.
+- Roll adds the die value to the active player's turn score for results 2 through 6.
+- Rolling a 1 loses the active player's unbanked turn score and passes the turn.
+- Hold adds the turn score to that player's total and passes the turn. Holding with a zero turn score still passes the turn.
+- The first player whose banked total reaches or exceeds 100 wins. Roll and Hold are disabled until a new game begins.
+- New game resets both totals, turn scores, active player, die, winner state, status, and controls.
 
-## Technology
-
-HTML, CSS, and vanilla JavaScript. No packages, build step, or backend are required. The flowchart and dice artwork are in `assets/`.
-
-## Run locally
-
-Open `index.html` in a browser, or from this folder run:
-
-```powershell
-python -m http.server 8000
-```
-
-Open `http://localhost:8000`. Stop the server with `Ctrl+C`.
+The die is selected randomly by the browser. The flowchart image in `assets/` is included as a project asset; the rules above reflect the implemented JavaScript.
 
 ## Controls and accessibility
 
-Use **Roll dice**, **Hold**, and **New game** with a mouse, touch, or keyboard. `Tab` moves between buttons; `Enter` or `Space` activates the focused button. The dice description updates after each roll, and a polite status announcement reports rolls, turn changes, and wins. Buttons have visible focus and the game-over controls are disabled. Motion is reduced when the system requests reduced motion.
+Use **Roll dice**, **Hold**, and **New game** with a mouse, touch, or keyboard. The buttons are native keyboard controls with visible focus. Die descriptions update as it is rolled, and a polite live status reports turns and wins. Reduced-motion preferences shorten the page transitions.
 
-## Project files
+## Technology and assets
 
-```text
-Pig-Game/
-├── index.html                 # Game board, players, and controls
-├── style.css                  # Original two-player look and responsive layouts
-├── script.js                  # Turn, score, win, and reset logic
-├── .prettierrc                # Existing formatting preferences
-└── assets/
-    ├── dice-1.png … dice-6.png
-    └── pig-game-flowchart.png
+HTML, CSS, and vanilla JavaScript. The stylesheet requests Nunito from Google Fonts with a local fallback. Dice images `assets/dice-1.png` through `assets/dice-6.png` and `assets/pig-game-flowchart.png` are stored locally. No package install, build step, backend, or score persistence is used.
+
+## Run locally
+
+Open `index.html` in a browser, or start a static server from this directory:
+
+```sh
+python -m http.server 8000
 ```
 
-## Verification
+Then visit `http://localhost:8000/`.
 
-The JavaScript syntax check, local asset/anchor reference check, and dependency-free Node interaction checks were run. They cover score accumulation, Hold, rolling a 1, reaching 100, blocked actions after a win, and reset after a win. A graphical browser is unavailable in the current environment, so responsive appearance and the browser console remain manual checks at 320px, 375px, 430px, 768px, and 1280px widths, plus a short viewport.
+## Check and limitations
 
-## Deployment
-
-The repository's Pig Game README lists [a Netlify demo](https://neeraj-pig-game-demo.netlify.app/), but its current availability and whether it serves this working copy were not verified. The repository contains no Pig Game build configuration. To publish this project on Netlify, import the repository, leave the build command empty, and set the publish directory to `Pig-Game`. This is a static site; no deployment was triggered from this workspace.
+From the repository root, run `node --check Pig-Game/script.js`. There is no committed automated Pig-Game test. Verify turn changes, the 1 rule, holding, the 100-point win, and new-game reset in a browser. Since rolls use `Math.random()`, exact rolls are not selectable through the interface.

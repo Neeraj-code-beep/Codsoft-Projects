@@ -257,7 +257,9 @@ h1 {
 .brand:focus-visible,
 .menu-text a:focus-visible,
 .shop-link:focus-visible,
-.juice-wrapper:focus-visible {
+.juice-wrapper:focus-visible,
+.showcase:focus-visible,
+h1:focus-visible {
 	outline: 3px solid #fff;
 	outline-offset: 4px;
 }

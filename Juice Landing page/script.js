@@ -6,6 +6,7 @@ const description = document.querySelector('.juice-info');
 const juiceWheel = document.querySelector('.juice-wheel');
 const fruitsWheel = document.querySelector('.fruits-wheel');
 const juiceText = document.querySelector('.juice-text');
+const siteNavigation = document.querySelector('.site-nav');
 
 const flavors = [
 	{
@@ -33,6 +34,7 @@ const flavors = [
 function selectFlavor(index) {
 	const flavor = flavors[index];
 	if (!flavor) return;
+	const selectionChanged = flavorButtons[index].getAttribute('aria-pressed') !== 'true';
 
 	showcase.style.background = flavor.background;
 	const rotation = -45 - index * 90;
@@ -50,13 +52,36 @@ function selectFlavor(index) {
 		image.classList.toggle('active-juice', imageIndex === index);
 	});
 
-	juiceText.classList.remove('fade-in');
-	void juiceText.offsetWidth;
-	juiceText.classList.add('fade-in');
+	if (selectionChanged) {
+		juiceText.classList.remove('fade-in');
+		void juiceText.offsetWidth;
+		juiceText.classList.add('fade-in');
+	}
 }
 
 flavorButtons.forEach((button, index) => {
 	button.addEventListener('click', () => selectFlavor(index));
+});
+
+siteNavigation.addEventListener('click', (event) => {
+	const link = event.target.closest('a[href^="#"]');
+	if (!link) return;
+
+	const target = document.querySelector(link.getAttribute('href'));
+	if (!target) return;
+
+	event.preventDefault();
+	const focusTarget = target.matches('.photos')
+		? target.querySelector('[aria-pressed="true"]') || target.querySelector('button')
+		: target.matches('.juice-text')
+			? title
+			: target;
+
+	focusTarget.focus({ preventScroll: true });
+	target.scrollIntoView({
+		behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth',
+		block: link.hash === '#home' ? 'start' : 'nearest',
+	});
 });
 
 document.querySelector('.photos').addEventListener('keydown', (event) => {

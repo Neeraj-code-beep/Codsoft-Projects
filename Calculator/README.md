@@ -1,41 +1,37 @@
-# CodSoft Calculator
+# Calculator
 
-A small, responsive calculator built with HTML, CSS, and vanilla JavaScript. It keeps the original neumorphic style and supports basic arithmetic through the on-screen keys or keyboard.
+A responsive browser calculator with a neumorphic interface. It evaluates arithmetic expressions through a small parser instead of JavaScript `eval`.
 
 ## Features
 
-- Addition, subtraction, multiplication, division, and remainder (`%`)
-- Standard operator precedence and unary minus
-- Decimal input, clear, backspace, and recoverable error messages
-- Keyboard controls: digits and `+ - * / % .`, `Enter` or `=` to calculate, `Backspace` to delete, and `Escape` or `Delete` to clear
-- Responsive layout, visible keyboard focus, and an announced result display
+- Addition, subtraction, multiplication, division, and remainder
+- Operator precedence and unary plus/minus
+- Decimal values, clear, and backspace
+- Error messages for incomplete expressions, division or remainder by zero, and invalid results
+- A live result display and keyboard input
+
+## Controls
+
+Use the on-screen buttons or type digits and `+`, `-`, `*`, `/`, `%`, or `.`. Press `Enter` or `=` to calculate, `Backspace` to remove the last character, and `Escape` or `Delete` to clear. An error can be cleared or replaced by entering a number.
+
+## Technology
+
+HTML, CSS, and vanilla JavaScript. There are no packages, build tools, or storage requirements.
 
 ## Run locally
 
-Open `index.html` directly in a browser, or start any static file server from this folder and open its local address. No build step or package installation is needed.
+Open `index.html` in a browser, or start a static server from this directory:
 
-## Project structure
-
-```text
-Calculator/
-├── index.html   # Calculator controls and display
-├── style.css    # Neumorphic styling and responsive layout
-├── script.js    # Input handling and arithmetic parser
-└── README.md    # Usage and verification notes
+```sh
+python -m http.server 8000
 ```
 
-## Implementation notes
+Then visit `http://localhost:8000/`.
 
-Expressions are tokenized and parsed in JavaScript using separate unary, multiplication/division/remainder, and addition/subtraction steps. This gives normal operator precedence without evaluating input as JavaScript. Invalid or incomplete expressions and division by zero show a message; entering a new number or clearing the calculator recovers the display. Results are formatted to 12 significant digits to hide common floating-point artifacts.
+## Limitations
 
-## Manual verification checklist
+The parser supports the listed arithmetic operators and precedence; it does not implement parentheses or scientific functions. Results are rounded to 12 significant digits to reduce common floating-point artifacts. Calculations are not saved between page visits.
 
-- Try `2 + 3 * 4` (14), `8 / 2` (4), `5 - 8` (-3), `5 % 2` (1), and `0.1 + 0.2` (0.3).
-- Enter several decimal points in one number, repeat operators, and calculate with an empty or incomplete expression.
-- Try `8 / 0`, then enter a number to confirm the calculator recovers; also check AC and backspace.
-- Repeat basic calculations with the keyboard controls listed above.
-- Check narrow mobile (around 320px), tablet, and desktop widths, plus a short viewport height.
+## Check
 
-## Deployment
-
-This folder is a standalone static site and needs no build step. No GitHub Pages, Netlify, or other hosting configuration was found in the repository when this README was written, so a live deployment is not confirmed. To publish the calculator with GitHub Pages, configure a Pages workflow or place the site files in the repository's configured Pages source; selecting the repository root alone serves the repository root, not this `Calculator/` folder. Alternatively, set a static host's publish directory to `Calculator/`. Follow that host's current setup instructions and verify the published URL after deployment.
+From the repository root, run `node --check Calculator/script.js`. The repository has no automated Calculator interaction test; verify the keyboard and button controls in a browser.
